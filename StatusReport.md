@@ -20,7 +20,7 @@ The project plan was finalized and submitted as [`ProjectPlan.md`](https://githu
 
 **Due Date:** March 17, 2026 | **Status:** Complete
 
-A Python program was created, which was a piece of software that allowed downloading the monthly archives of Lichess PGNs using an algorithm. The system was able to stream these HTTP downloads in conjunction with Zstandard (.zst) decompression at the same time by employing the Zstandard algorithm library to parse out the PGN data in 8 MB chunks without having to hold the entire (~30 GB) file in RAM. The code also included the ability to have a live progress report and to validate the checksum with MD5 before proceeding. For testing purposes, the data being used was the January 2013 Lichess data set, which is much smaller than the current monthly archives and has an identical structural format, allowing full processing of the pipeline to be verified prior to scaling the data out. You can obtain the data using:
+A Python program [`acquire_data.py`](https://github.com/yunsuhan0107/is477-project/blob/main/acquire_data.py) was created, which was a piece of software that allowed downloading the monthly archives of Lichess PGNs using an algorithm. The system was able to stream these HTTP downloads in conjunction with Zstandard (.zst) decompression at the same time by employing the Zstandard algorithm library to parse out the PGN data in 8 MB chunks without having to hold the entire (~30 GB) file in RAM. The code also included the ability to have a live progress report and to validate the checksum with MD5 before proceeding. For testing purposes, the data being used was the January 2013 Lichess data set, which is much smaller than the current monthly archives and has an identical structural format, allowing full processing of the pipeline to be verified prior to scaling the data out. You can obtain the data using:
 
 ```bash
 python acquire_data.py --year 2013 --month 01 --outdir data/raw --checksum
@@ -32,7 +32,7 @@ python acquire_data.py --year 2013 --month 01 --outdir data/raw --checksum
 
 **Due Date:** March 24, 2026 | **Status:** Complete
 
-In order to create an easily maintainable structured CSV, I developed a Python script called clean_data.py to parse the raw PGN. The way this script works is as follows: It reads the games using the python library chess to prevent memory overload, only reading one game at the time until all games are read from the file. The script has the following filters:
+In order to create an easily maintainable structured CSV, I developed a Python script [`clean_data.py`](https://github.com/yunsuhan0107/is477-project/blob/main/clean_data.py) to parse the raw PGN. The way this script works is as follows: It reads the games using the python library chess to prevent memory overload, only reading one game at the time until all games are read from the file. The script has the following filters:
 
 - Remove any game with no Elo rating
 - Remove any game that has an unrecognized or incomplete result
@@ -75,6 +75,8 @@ A methodological adjustment made during the course was that to obtain opening de
 
 In addition to making progress with implementation, we are continuing to develop; however, we are utilizing the Lichess database from January 2013 as a test corpus, so that we can have a verification of the pipeline end-to-end before increasing sample size to a current month and larger data set to complete analysis.
 
+No specific feedback was received for Milestone 2, so no changes to the project plan were made in response to feedback.
+
 ---
 
 ## 4. Challenges and Issues
@@ -96,5 +98,3 @@ The various combinations of moves that can lead to an identical set of pieces on
 I took care of establishing & maintaining our GitHub repo & providing the first version of ProjectPlan.md. For the data pipeline component, I created the acquire_data.py file (Task 2) to allow for live downloading as well as performing Zstandard decompression on Lichess PGN files as well as the clean_data.py file (Task 3) to allow for the parsing, filtering, & extracting structured fields from raw PGN data using python-chess. I also identified the monthly PGN dataset from January 2013 as a good choice for test datasets during the development of our data pipeline. This milestone reflects the temporary and permanent Task Update sections for Tasks 1, 2, 3, 5 and 7, along with the revised Timeline and Challenges sections of this report.
 
 ### Taeseok Kang
-
-
