@@ -50,6 +50,55 @@ python clean_data.py --input data/raw/lichess_2013-01.pgn \
 
 ---
 
+### Task 4: Data Integration
+
+**Due Date:** March 29, 2026 | **Status:** Complete
+
+The script [`integrate_data.py`](https://github.com/yunsuhan0107/is477-project/blob/main/integrate_data.py) is responsible for consolidating the standardized chess match data with the ECO (Encyclopedia of Chess Openings) database. The application downloads and stores copies of all five of the ECO TSV files available in the official lichess-org/chess-openings project on GitHub. The matching of openings works by applying the longest-prefix approach. That is, for each game, the application attempts to match as long a prefix of its opening moves against ECO entries as possible. Therefore, matches that diverge from theory at an early point receive the most specific opening classification possible.
+
+The application also classifies the average rating of both players in each game based on their average Elo, assigning each player to one of the following rating groups: beginner, novice, intermediate, advanced, expert or master. This allows us to conduct cross-rating analysis as per our research questions.
+
+Output columns: `white_elo`, `black_elo`, `result`, `time_control`, `opening_moves`, `eco_code`, `opening_name`, `avg_elo`, `rating_group`
+
+```bash
+python integrate_data.py --games data/clean/lichess_2013-01.csv \
+                         --output data/integrated/lichess_2013-01_integrated.csv
+```
+
+---
+
+### Task 5: Interim Status Report
+
+**Due Date:** March 31, 2026 | **Status:** In Progress (this document)
+
+This is Task 5 - Status Report, which was due originally on March 31 2026 and is late. This report has been co-written by both authors via their individual contributions, as required, to the repository.
+
+---
+
+### Task 6: Statistical Analysis
+
+**Due Date:** April 14, 2026 | **Status:** Not Yet Started
+
+We have not yet started statistical analysis. In this task, we will be calculating opening win rates by rating group; using probability distributions to measure variance; and producing charts (i.e., bar charts) to visualize the win rate for each rating group and the overall win rate distribution across rating groups. Since we have completed Tasks 2-4 and have access to the integrated dataset, this task will be our next priority. We are on schedule to finish this task by April 28, 2026.
+
+---
+
+### Task 7: Workflow Automation
+
+**Due Date:** April 21, 2026 | **Status:** Not Yet Started
+
+As of this date, none of the Snakemake workflows have been developed. This project will take the three programs listed, acquire_data.py, clean_data.py, and integrate_data.py, and combine them into one unified, reproducible workflow using Snakemake that includes clear rules for determining how they interact and managing dependencies between the three. Our goal is to complete this project by April 30, 2026.
+
+---
+
+### Task 8: Final Project Submission
+
+**Due Date:** May 3, 2026 | **Status:** Not Yet Started
+
+The completed submitted (final) product will be a complete written report, along with a reproducible Snakemake pipeline, machine-readable metadata (in DCAT or DataCite format), and a GitHub release. The original day of submission is still May 3, 2026 as the targeted due date.
+
+---
+
 ## 2. Updated Timeline
 
 | Task | Description | Owner | Original Due Date | Revised Due Date | Status |
@@ -89,6 +138,14 @@ Monthly PGN Files From Lichess.com are very large; they average 30 GB (compresse
 
 The various combinations of moves that can lead to an identical set of pieces on the chessboard indicate that using only a simple string representation of moves in PGN movement text will not accurately identify which opening has been played. This problem was solved in clean_data.py by utilizing the library python-chess to identify the moves used for the creation of a board position based on the current state of the board instead of on the text of moves. This allows the board's tracking of position to be independent of ordering of the moves, resolving the transposition issue noted in the project plan.
 
+### Challenge 3: Overall Schedule Delay
+
+Tasks 2, 3, and 4 were all completed later than their original completion date and the completion of this report, which is Task 5, is also late. We do however have all of the data pipeline scripts fully developed and functioning now, as well as a clear plan for the final submission deadline and not all of the scripts are ready for statistical analysis (Task 6) yet.
+
+### Challenge 4: Machine-Readable Metadata Standards
+
+There's still an information gap between DCAT & DataCite metadata formats plus addressing this will be done during the last part of Task 8 with the help of reviewing every course material and the related documentation.
+
 ---
 
 ## 5. Individual Contributions
@@ -98,3 +155,5 @@ The various combinations of moves that can lead to an identical set of pieces on
 I took care of establishing & maintaining our GitHub repo & providing the first version of ProjectPlan.md. For the data pipeline component, I created the acquire_data.py file (Task 2) to allow for live downloading as well as performing Zstandard decompression on Lichess PGN files as well as the clean_data.py file (Task 3) to allow for the parsing, filtering, & extracting structured fields from raw PGN data using python-chess. I also identified the monthly PGN dataset from January 2013 as a good choice for test datasets during the development of our data pipeline. This milestone reflects the temporary and permanent Task Update sections for Tasks 1, 2, 3, 5 and 7, along with the revised Timeline and Challenges sections of this report.
 
 ### Taeseok Kang
+
+I was involved in the planning meetings surrounding this project and responsible for both the design of the relational database schema and the method used to integrate data. I also created integrate_data.py (Task 4), which will download the ECO opening database, apply the longest-prefix opening match algorithm to the cleaned-game dataset, and label each game's rating group to facilitate cross-rating analysis. Additionally, I contributed to writing the update sections for Tasks 4 and 6 of this report at this milestone.
