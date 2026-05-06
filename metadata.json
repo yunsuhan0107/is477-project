@@ -1,0 +1,135 @@
+{
+  "@context": "http://schema.org",
+  "@type": "Dataset",
+  "name": "Analyzing the Gap Between Chess Opening Theory and Practical Execution",
+  "description": "A data curation and analysis project that investigates the relationship between chess opening theory and practical performance across player skill levels. Using the Lichess Open Database and the Encyclopedia of Chess Openings (ECO), this project builds an automated pipeline to download, clean, integrate, and analyze millions of rated online chess games. Win rates are computed per opening per rating group (beginner through master), cross-group variance is measured to identify theory-vs-practice gaps, and post-opening accuracy (Average Centipawn Loss) is correlated with ECO theoretical line length.",
+  "url": "https://github.com/yunsuhan0107/is477-project",
+  "identifier": "https://github.com/yunsuhan0107/is477-project",
+  "version": "1.0.0",
+  "datePublished": "2026-05-06",
+  "dateCreated": "2026-02-17",
+  "dateModified": "2026-05-06",
+  "license": "https://opensource.org/licenses/MIT",
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Yunsu Han",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of Illinois Urbana-Champaign"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Taeseok Kang",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of Illinois Urbana-Champaign"
+      }
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "University of Illinois Urbana-Champaign — School of Information Sciences"
+  },
+  "keywords": [
+    "chess",
+    "opening theory",
+    "win rate analysis",
+    "Lichess",
+    "ECO openings",
+    "data curation",
+    "average centipawn loss",
+    "rating group analysis",
+    "PGN parsing",
+    "data integration"
+  ],
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "name": "Project repository (code, results, documentation)",
+      "contentUrl": "https://github.com/yunsuhan0107/is477-project",
+      "encodingFormat": "text/html"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "Lichess Open Database — January 2017",
+      "contentUrl": "https://database.lichess.org/standard/lichess_db_standard_rated_2017-01.pgn.zst",
+      "encodingFormat": "application/zstd",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "Encyclopedia of Chess Openings (ECO) Database",
+      "contentUrl": "https://github.com/lichess-org/chess-openings",
+      "encodingFormat": "text/tab-separated-values",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "Dataset",
+      "name": "Cleaned Games CSV",
+      "description": "10,000 rated Lichess games from January 2017, cleaned and parsed from raw PGN. Includes player Elo ratings, game results, time controls, first-10-move opening sequences, and post-opening ACPL where available.",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Integrated Games CSV",
+      "description": "Cleaned games enriched with ECO opening classifications, theoretical line lengths, average Elo, and rating group assignments.",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "Dataset",
+      "name": "ECO Opening Database Cache",
+      "description": "3,690 named chess opening variations from the official lichess-org/chess-openings repository, with normalised move strings and computed line lengths.",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "Dataset",
+      "name": "Analysis Results",
+      "description": "Per-opening win rate summaries, cross-group variance measurements, master vs beginner comparisons, and ACPL-by-line-length aggregations.",
+      "encodingFormat": "text/csv"
+    }
+  ],
+  "isBasedOn": [
+    {
+      "@type": "Dataset",
+      "name": "Lichess Open Database",
+      "url": "https://database.lichess.org",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "@type": "Dataset",
+      "name": "lichess-org/chess-openings (ECO Database)",
+      "url": "https://github.com/lichess-org/chess-openings",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "softwareRequirements": [
+    "Python >= 3.12",
+    "pandas",
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "python-chess",
+    "requests",
+    "zstandard",
+    "tqdm"
+  ],
+  "measurementTechnique": [
+    "White win rate computation per opening per rating group",
+    "Cross-group variance analysis of win rates",
+    "Average Centipawn Loss (ACPL) extraction from engine evaluation annotations",
+    "Longest-prefix ECO opening matching",
+    "Linear regression of opening line length vs post-opening ACPL"
+  ],
+  "temporalCoverage": "2017-01",
+  "spatialCoverage": "Global (online chess platform)",
+  "funder": {
+    "@type": "Organization",
+    "name": "University of Illinois Urbana-Champaign — IS477: Data Management, Curation, and Reproducibility"
+  }
+}
