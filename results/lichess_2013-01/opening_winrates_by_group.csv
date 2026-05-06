@@ -1,0 +1,71 @@
+eco_code,opening_name,rating_group,games,white_wins,white_win_rate
+A00,Hungarian Opening,intermediate,78,42,0.5384615384615384
+A00,Mieses Opening,intermediate,47,20,0.425531914893617
+A00,Mieses Opening,advanced,30,11,0.36666666666666664
+A00,Saragossa Opening,intermediate,56,42,0.75
+A00,Saragossa Opening,advanced,36,10,0.2777777777777778
+A00,Van't Kruijs Opening,novice,45,21,0.4666666666666667
+A00,Van't Kruijs Opening,intermediate,257,115,0.4474708171206226
+A00,Van't Kruijs Opening,advanced,101,34,0.33663366336633666
+A40,English Defense,intermediate,61,27,0.4426229508196721
+A40,English Defense,advanced,38,21,0.5526315789473685
+A40,Horwitz Defense,intermediate,134,76,0.5671641791044776
+A40,Horwitz Defense,advanced,123,70,0.5691056910569106
+A40,Horwitz Defense,expert,30,16,0.5333333333333333
+A40,Queen's Pawn Game,intermediate,32,24,0.75
+A40,Queen's Pawn Game,advanced,46,31,0.6739130434782609
+A40,Queen's Pawn Game: Modern Defense,intermediate,36,20,0.5555555555555556
+A40,Queen's Pawn Game: Modern Defense,advanced,50,34,0.68
+A41,Old Indian Defense,advanced,30,21,0.7
+A41,Queen's Pawn Game,intermediate,32,20,0.625
+A43,Benoni Defense: Old Benoni,advanced,43,23,0.5348837209302325
+A45,Indian Defense,intermediate,35,20,0.5714285714285714
+A45,Indian Defense,advanced,37,13,0.35135135135135137
+B00,Owen Defense,intermediate,117,56,0.47863247863247865
+B00,Owen Defense,advanced,45,30,0.6666666666666666
+B00,Pirc Defense,intermediate,87,44,0.5057471264367817
+B00,Pirc Defense,advanced,69,31,0.4492753623188406
+B01,Scandinavian Defense,intermediate,99,49,0.494949494949495
+B01,Scandinavian Defense,advanced,69,37,0.5362318840579711
+B01,Scandinavian Defense: Mieses-Kotroc Variation,intermediate,76,58,0.7631578947368421
+B01,Scandinavian Defense: Mieses-Kotroc Variation,advanced,52,31,0.5961538461538461
+B01,Scandinavian Defense: Valencian Variation,advanced,43,19,0.4418604651162791
+B06,Modern Defense,intermediate,106,45,0.42452830188679247
+B06,Modern Defense,advanced,59,34,0.576271186440678
+B10,Caro-Kann Defense,intermediate,30,15,0.5
+B10,Caro-Kann Defense,advanced,63,27,0.42857142857142855
+B20,Sicilian Defense,intermediate,39,18,0.46153846153846156
+B20,Sicilian Defense,advanced,31,15,0.4838709677419355
+B20,Sicilian Defense: Bowdler Attack,intermediate,102,35,0.3431372549019608
+B20,Sicilian Defense: Bowdler Attack,advanced,45,10,0.2222222222222222
+B21,Sicilian Defense: McDonnell Attack,advanced,43,16,0.37209302325581395
+B21,Sicilian Defense: Smith-Morra Gambit,intermediate,47,20,0.425531914893617
+B30,Sicilian Defense: Old Sicilian,advanced,35,8,0.22857142857142856
+C00,French Defense,intermediate,57,21,0.3684210526315789
+C00,French Defense: Knight Variation,intermediate,87,46,0.5287356321839081
+C00,French Defense: Knight Variation,advanced,78,38,0.48717948717948717
+C00,French Defense: La Bourdonnais Variation,advanced,33,13,0.3939393939393939
+C00,French Defense: Normal Variation,intermediate,41,25,0.6097560975609756
+C20,Center Game,intermediate,39,17,0.4358974358974359
+C20,King's Pawn Game: Leonardis Variation,intermediate,48,24,0.5
+C20,King's Pawn Game: Wayward Queen Attack,intermediate,79,30,0.379746835443038
+C22,Center Game: Normal Variation,intermediate,31,10,0.3225806451612903
+C23,Bishop's Opening,intermediate,117,69,0.5897435897435898
+C23,Bishop's Opening,advanced,40,18,0.45
+C24,Bishop's Opening: Berlin Defense,intermediate,73,44,0.6027397260273972
+C24,Bishop's Opening: Berlin Defense,advanced,43,17,0.3953488372093023
+C40,King's Pawn Game: Damiano Defense,intermediate,32,18,0.5625
+C41,Philidor Defense,intermediate,182,102,0.5604395604395604
+C41,Philidor Defense,advanced,90,64,0.7111111111111111
+C50,Italian Game: Anti-Fried Liver Defense,intermediate,41,20,0.4878048780487805
+C62,Ruy Lopez: Steinitz Defense,intermediate,34,13,0.38235294117647056
+D00,Queen's Pawn Game,intermediate,110,62,0.5636363636363636
+D00,Queen's Pawn Game,advanced,123,60,0.4878048780487805
+D00,Queen's Pawn Game: Accelerated London System,intermediate,33,18,0.5454545454545454
+D00,Queen's Pawn Game: Chigorin Variation,intermediate,57,46,0.8070175438596491
+D02,Queen's Pawn Game: Zukertort Variation,advanced,34,19,0.5588235294117647
+D10,Slav Defense,intermediate,30,17,0.5666666666666667
+D10,Slav Defense,advanced,48,31,0.6458333333333334
+D20,Queen's Gambit Accepted,intermediate,33,19,0.5757575757575758
+D20,Queen's Gambit Accepted,advanced,32,24,0.75
+D30,Queen's Gambit Declined,advanced,41,16,0.3902439024390244
