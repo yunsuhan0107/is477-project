@@ -1,0 +1,51 @@
+eco_code,opening_name,rating_group,games,white_wins,white_win_rate
+A00,Hungarian Opening,advanced,68,29,0.4264705882352941
+A00,Hungarian Opening,expert,34,11,0.3235294117647059
+A00,Mieses Opening,advanced,48,22,0.4583333333333333
+A00,Van't Kruijs Opening,intermediate,69,22,0.3188405797101449
+A00,Van't Kruijs Opening,advanced,97,43,0.44329896907216493
+A00,Van't Kruijs Opening,expert,58,24,0.41379310344827586
+A02,Bird Opening,advanced,34,18,0.5294117647058824
+A40,Horwitz Defense,intermediate,75,43,0.5733333333333334
+A40,Horwitz Defense,advanced,107,51,0.4766355140186916
+A40,Horwitz Defense,expert,52,25,0.4807692307692308
+A40,Queen's Pawn Game,advanced,39,16,0.41025641025641024
+A40,Queen's Pawn Game: Modern Defense,advanced,37,22,0.5945945945945946
+A40,Queen's Pawn Game: Modern Defense,expert,31,16,0.5161290322580645
+A43,Benoni Defense: Old Benoni,advanced,45,18,0.4
+A43,Benoni Defense: Old Benoni,expert,41,20,0.4878048780487805
+A45,Indian Defense,advanced,47,22,0.46808510638297873
+A50,Indian Defense: Normal Variation,advanced,30,19,0.6333333333333333
+B00,Owen Defense,intermediate,38,15,0.39473684210526316
+B00,Owen Defense,advanced,39,27,0.6923076923076923
+B00,Pirc Defense,intermediate,34,18,0.5294117647058824
+B00,Pirc Defense,advanced,76,30,0.39473684210526316
+B01,Scandinavian Defense,intermediate,58,35,0.603448275862069
+B01,Scandinavian Defense,advanced,49,16,0.32653061224489793
+B01,Scandinavian Defense,expert,39,19,0.48717948717948717
+B01,Scandinavian Defense: Mieses-Kotroc Variation,intermediate,43,27,0.627906976744186
+B01,Scandinavian Defense: Mieses-Kotroc Variation,advanced,58,34,0.5862068965517241
+B01,Scandinavian Defense: Valencian Variation,advanced,43,20,0.46511627906976744
+B06,Modern Defense,intermediate,43,19,0.4418604651162791
+B06,Modern Defense,advanced,85,40,0.47058823529411764
+B10,Caro-Kann Defense,intermediate,31,14,0.45161290322580644
+B10,Caro-Kann Defense,advanced,66,31,0.4696969696969697
+B20,Sicilian Defense: Bowdler Attack,intermediate,46,22,0.4782608695652174
+B20,Sicilian Defense: Bowdler Attack,advanced,53,22,0.41509433962264153
+B21,Sicilian Defense: Smith-Morra Gambit,advanced,33,14,0.42424242424242425
+B30,Sicilian Defense: Old Sicilian,advanced,35,20,0.5714285714285714
+B50,Sicilian Defense: Modern Variations,advanced,43,20,0.46511627906976744
+C00,French Defense: Knight Variation,intermediate,40,22,0.55
+C00,French Defense: Knight Variation,advanced,88,40,0.45454545454545453
+C00,French Defense: Normal Variation,intermediate,33,24,0.7272727272727273
+C20,King's Pawn Game: Leonardis Variation,intermediate,30,15,0.5
+C20,King's Pawn Game: Wayward Queen Attack,intermediate,37,14,0.3783783783783784
+C23,Bishop's Opening,intermediate,52,20,0.38461538461538464
+C23,Bishop's Opening,advanced,35,17,0.4857142857142857
+C24,Bishop's Opening: Berlin Defense,advanced,30,13,0.43333333333333335
+C41,Philidor Defense,intermediate,84,42,0.5
+C41,Philidor Defense,advanced,85,39,0.4588235294117647
+C62,Ruy Lopez: Steinitz Defense,advanced,39,23,0.5897435897435898
+D00,Queen's Pawn Game,intermediate,64,35,0.546875
+D00,Queen's Pawn Game,advanced,57,21,0.3684210526315789
+D00,Queen's Pawn Game: Accelerated London System,advanced,38,18,0.47368421052631576
