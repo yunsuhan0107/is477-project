@@ -1,0 +1,217 @@
+DATA DICTIONARY
+===============
+Project: Analyzing the Gap Between Chess Opening Theory and Practical Execution
+Authors: Yunsu Han, Taeseok Kang
+Repository: https://github.com/yunsuhan0107/is477-project
+
+This file describes all columns present in each dataset produced by the pipeline.
+
+================================================================================
+1. CLEANED GAMES CSV
+   File: data/clean/lichess_<YEAR>-<MONTH>.csv
+   Produced by: clean_data.py
+   Source: Lichess Open Database (https://database.lichess.org)
+================================================================================
+
+Column               Type       Description
+------------------------------------------------------------------------------
+white_elo            integer    Elo rating of the white player at the time of
+                                the game. Range: 400–3500.
+
+black_elo            integer    Elo rating of the black player at the time of
+                                the game. Range: 400–3500.
+
+result               string     Outcome of the game from white's perspective.
+                                Values: "white" (white wins), "black" (black
+                                wins), "draw". Encoded from PGN result strings
+                                "1-0", "0-1", "1/2-1/2" respectively. Games
+                                with result "*" (unfinished) are excluded.
+
+time_control         string     Time control of the game in Lichess format
+                                "initial+increment" (e.g., "300+0" = 5 minutes
+                                with no increment). Value "?" indicates missing.
+
+opening_moves        string     Space-separated sequence of the first 10
+                                half-moves of the game in Standard Algebraic
+                                Notation (SAN), extracted from board state
+                                rather than raw PGN text to correctly handle
+                                transpositions. Example: "e4 e5 Nf3 Nc6 Bb5".
+
+num_opening_moves    integer    Actual number of half-moves in opening_moves.
+                                Will be less than 10 if the game ended before
+                                10 moves were played. Range: 1–10.
+
+post_opening_acpl    float      Average Centipawn Loss (ACPL) per move for
+                                all moves played after the first 10 half-moves
+                                (the post-opening phase). Computed from engine
+                                evaluation annotations (%eval tags) in the PGN.
+                                Centipawn loss for each move = the drop in
+                                evaluation from the moving side's perspective.
+                                Mate scores are mapped to ±1000 centipawns.
+                                Empty/NaN if the game has fewer than 2
+                                post-opening eval annotations.
+
+
+================================================================================
+2. ECO OPENING DATABASE (CACHE)
+   File: data/eco/eco_openings.csv
+   Produced by: integrate_data.py (downloaded from lichess-org/chess-openings)
+   Source: https://github.com/lichess-org/chess-openings (CC0)
+================================================================================
+
+Column               Type       Description
+-----------------------------------------------------------------------------
+eco                  string     ECO (Encyclopedia of Chess Openings) volume
+                                letter. Values: A, B, C, D, or E.
+
+eco_code             string     Full ECO classification code (e.g., "B20").
+                                Uniquely identifies a named opening variation.
+
+name                 string     Full name of the opening variation
+                                (e.g., "Sicilian Defense: Alapin Variation").
+
+moves                string     Canonical move sequence for this opening in
+                                PGN notation, including move numbers
+                                (e.g., "1. e4 c5 2. c3").
+
+moves_clean          string     Normalised version of moves with move numbers
+                                stripped (e.g., "e4 c5 c3"). Used for
+                                prefix matching against opening_moves.
+
+eco_line_length      integer    Number of half-moves in the theoretical ECO
+                                line, derived by counting tokens in moves_clean.
+                                Range: 1–20+. Used as the independent variable
+                                in the Q3 (line length vs ACPL) analysis.
+
+
+================================================================================
+3. INTEGRATED GAMES CSV
+   File: data/integrated/lichess_<YEAR>-<MONTH>_integrated.csv
+   Produced by: integrate_data.py
+   Contains all columns from the Cleaned Games CSV plus the following:
+================================================================================
+
+Column               Type       Description
+-----------------------------------------------------------------------------
+eco_code             string     ECO classification code matched to this game
+                                using longest-prefix matching on opening_moves.
+                                Value "Unknown" if no ECO prefix was matched.
+
+opening_name         string     Full name of the matched ECO opening variation.
+                                Value "Unknown" if no ECO prefix was matched.
+
+eco_line_length      integer    Length (in half-moves) of the matched ECO
+                                theoretical line. Value 0 if unmatched.
+
+avg_elo              integer    Average of white_elo and black_elo, used to
+                                assign each game to a rating group.
+                                Computed as: floor((white_elo + black_elo) / 2).
+
+rating_group         string     Skill bracket assigned based on avg_elo.
+                                Values and thresholds:
+                                  "beginner"     : avg_elo < 1000
+                                  "novice"       : 1000 <= avg_elo < 1300
+                                  "intermediate" : 1300 <= avg_elo < 1600
+                                  "advanced"     : 1600 <= avg_elo < 1900
+                                  "expert"       : 1900 <= avg_elo < 2200
+                                  "master"       : avg_elo >= 2200
+
+
+================================================================================
+4. ANALYSIS OUTPUT CSVs
+   Files: results/<DATASET_ID>/*.csv
+   Produced by: analyze.py
+================================================================================
+
+4a. opening_winrates_overall.csv
+   Per-opening win/draw/loss rates aggregated across all rating groups.
+
+   Column               Type       Description
+   ---------------------------------------------------------------------------
+   eco_code             string     ECO classification code.
+   opening_name         string     Full opening name.
+   games                integer    Total games for this opening (all groups).
+   white_wins           integer    Number of games white won.
+   draws                integer    Number of drawn games.
+   black_wins           integer    Number of games black won.
+   white_win_rate       float      white_wins / games. Range: 0.0–1.0.
+   draw_rate            float      draws / games. Range: 0.0–1.0.
+   black_win_rate       float      black_wins / games. Range: 0.0–1.0.
+
+4b. opening_winrates_by_group.csv
+   Per-opening white win rate broken down by rating group.
+
+   Column               Type       Description
+   --------------------------------------------------------------------------
+   eco_code             string     ECO classification code.
+   opening_name         string     Full opening name.
+   rating_group         string     Rating group (see rating_group above).
+   games                integer    Games for this opening in this group.
+   white_wins           integer    White wins in this opening/group combination.
+   white_win_rate       float      white_wins / games. Range: 0.0–1.0.
+
+4c. opening_variance.csv
+   Cross-group variance of white win rate per opening. High variance indicates
+   the opening performs very differently depending on player skill level.
+
+   Column               Type       Description
+   ---------------------------------------------------------------------------
+   eco_code             string     ECO classification code.
+   opening_name         string     Full opening name.
+   beginner             float      White win rate in the beginner group (NaN
+   novice               float      if fewer than min_games games exist).
+   intermediate         float      (one column per rating group present
+   advanced             float       in the dataset)
+   expert               float
+   master               float
+   variance             float      Variance of white win rate across groups.
+   std_dev              float      Standard deviation across groups (percentage
+                                   points when multiplied by 100).
+   range                float      Max white win rate minus min across groups.
+   n_groups             integer    Number of rating groups with data.
+
+4d. master_vs_beginner.csv
+   Side-by-side comparison of white win rates for master/expert vs
+   beginner/novice players. Directly addresses Research Question 1.
+
+   Column               Type       Description
+   --------------------------------------------------------------------------
+   eco_code             string     ECO classification code.
+   opening_name         string     Full opening name.
+   games                integer    Games in beginner/novice groups combined.
+   white_wins           integer    White wins in beginner/novice groups.
+   beginner_win_rate    float      White win rate for beginner/novice players.
+   master_win_rate      float      White win rate for master/expert players.
+   gap                  float      master_win_rate - beginner_win_rate.
+                                   Positive = opening favours stronger players.
+   abs_gap              float      Absolute value of gap. Used for sorting.
+
+4e. opening_acpl_by_length.csv
+   Mean post-opening ACPL grouped by ECO theoretical line length.
+   Directly addresses Research Question 3.
+
+   Column               Type       Description
+   ----------------------------------------------------------------------------
+   eco_line_length      integer    ECO theoretical line length in half-moves.
+   games                integer    Games in this line-length bucket.
+   mean_acpl            float      Mean post-opening ACPL for this bucket (cp).
+   std_acpl             float      Standard deviation of ACPL in this bucket.
+
+
+================================================================================
+5. DATA QUALITY REPORT
+   File: results/<DATASET_ID>/data_quality_report.txt
+   Produced by: profile_data.py
+================================================================================
+
+Plain-text report covering:
+  - Row and column counts for cleaned and integrated datasets
+  - Missing value counts and rates per column
+  - Duplicate row detection
+  - Numeric column statistics (min, max, mean, std, quartiles)
+  - Elo rating range validity checks
+  - Result value validity checks
+  - ECO opening match rate
+  - Rating group distribution
+  - Post-opening ACPL coverage and outlier detection
+  - ECO line length distribution
